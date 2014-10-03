@@ -1,0 +1,35 @@
+{
+    "name": "angular-skeleton",
+    "description": "Get up and running quick with an Angular project",
+    "version": "0.0.1",
+    "dependencies": {
+        "bootstrap": "latest",
+        "font-awesome": "latest",
+        "angular": "latest",
+        "angular-route": "latest",
+        "angular-resource": "latest",
+        "angular-sanitize": "latest",
+        "angular-touch": "latest",
+        "angular-toolbelt": "latest",
+        "angular-bootstrap": "latest",
+        "marked": "latest"
+    },
+    "devDependencies": {
+        "angular-mocks": "latest"
+    },
+    "homepage": "https://github.com/andrew-cunliffe/angular-skeleton",
+    "exportsOverride": {
+        "jquery": {},
+        "bootstrap": {
+            "css": "dist/css/bootstrap.min.css",
+            "fonts": "fonts/*"
+        },
+        "font-awesome": {
+            "css": "css/font-awesome.min.css",
+            "fonts": "fonts/*"
+        },
+        "marked": {
+            ".": "lib"
+        }
+    }
+}
