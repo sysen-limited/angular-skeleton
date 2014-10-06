@@ -1,6 +1,6 @@
 <h1>Contact Us</h1>
 
-<form name="contactForm" role="form">
+<form name="contact.form" role="form">
     <div class="form-group">
         <label class="control-label">Your Name</label>
         <input class="form-control" name="name" type="text" data-ng-model="contact.name" data-ng-required="true" />
@@ -14,7 +14,7 @@
         <textarea class="form-control" name="message" data-ng-model="contact.message" data-ng-required="true"></textarea>
     </div>
     <div class="row">
-        <div class="col-xs-4"><button class="btn btn-warning btn-block" data-ng-disabled="contactForm.$pristine">Clear</button></div>
-        <div class="col-xs-8"><button class="btn btn-primary btn-block" data-ng-disabled="contactForm.$invalid">Send</button></div>
+        <div class="col-xs-4"><button class="btn btn-warning btn-block" data-ng-click="contact.clear()" data-ng-disabled="contact.form.$pristine">Clear</button></div>
+        <div class="col-xs-8"><button class="btn btn-primary btn-block" data-ng-disabled="contact.form.$invalid">Send</button></div>
     </div>
 </form>
