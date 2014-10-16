@@ -15,9 +15,10 @@ module.exports = function (config) {
         ],
 
         files: [
-            'lib/angular/angular.js',
-            'lib/**/angular-*.js',
-            'lib/marked/marked.js',
+            'bower_modules/angular/angular.js',
+            'bower_modules/**/angular-*.js',
+            'bower_modules/angular-bootstrap/ui-bootstrap.js',
+            'bower_modules/marked/marked.js',
             'src/**/*.js',
             'test/**/*.spec.js'
         ],
@@ -44,4 +45,4 @@ module.exports = function (config) {
             dir: 'logs/karma/'
         }
     })
-}
+};

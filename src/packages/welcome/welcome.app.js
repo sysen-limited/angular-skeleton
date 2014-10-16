@@ -1,4 +1,4 @@
-angular.module('example.welcome', [
+angular.module('package.welcome', [
     'ngRoute',
 
     'controller.welcome'
@@ -6,6 +6,6 @@ angular.module('example.welcome', [
     .config(['$routeProvider', function ($routes) {
         $routes
             .when('/', {
-                controller: 'WelcomeCtrl as welcome', templateUrl: 'templates/welcome.html'
+                controller: 'WelcomeCtrl', controllerAs: 'welcome', templateUrl: 'templates/welcome.html'
             });
     }]);

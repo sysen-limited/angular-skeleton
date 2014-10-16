@@ -22,17 +22,17 @@ module.exports = function (grunt) {
                 options: {
                     banner: '<%= meta.modules %>\n'
                 },
-                src: ['src/app.js', 'src/**/*.app.js', 'src/**/*.model.js', 'src/**/*.ctrl.js'],
+                src: ['src/app.js', 'src/**/*.app.js', 'src/directives/**/*.js', 'src/services/**/*.js', 'src/packages/**/*.ctrl.js'],
                 dest: 'dist/assets/js/app.js'
             },
             angular: {
                 src: [
-                    'lib/angular/angular.js',
-                    'lib/angular-route/angular-route.js',
-                    'lib/angular-resource/angular-resource.js',
-                    'lib/angular-sanitize/angular-sanitize.js',
-                    'lib/angular-touch/angular-touch.js',
-                    'lib/angular-bootstrap/ui-bootstrap-tpls.js'
+                    'bower_modules/angular/angular.js',
+                    'bower_modules/angular-route/angular-route.js',
+                    'bower_modules/angular-resource/angular-resource.js',
+                    'bower_modules/angular-sanitize/angular-sanitize.js',
+                    'bower_modules/angular-touch/angular-touch.js',
+                    'bower_modules/angular-bootstrap/ui-bootstrap-tpls.js'
                 ],
                 dest: 'dist/assets/js/angular.js'
             }
@@ -51,9 +51,9 @@ module.exports = function (grunt) {
         less: {
             dev: {
                 files: {
-                    'dist/assets/css/main.css': 'less/main.less',
-                    'dist/assets/css/bootstrap.css': 'lib/bootstrap/less/bootstrap.less',
-                    'dist/assets/css/font-awesome.css': 'lib/font-awesome/less/font-awesome.less'
+                    'dist/assets/css/main.css': 'design/less/main.less',
+                    'dist/assets/css/bootstrap.css': 'bower_modules/bootstrap/less/bootstrap.less',
+                    'dist/assets/css/font-awesome.css': 'bower_modules/font-awesome/less/font-awesome.less'
                 }
             },
             prod: {
@@ -62,9 +62,9 @@ module.exports = function (grunt) {
                     report: 'min'
                 },
                 files: {
-                    'dist/assets/css/main.css': 'less/main.less',
-                    'dist/assets/css/bootstrap.css': 'lib/bootstrap/less/bootstrap.less',
-                    'dist/assets/css/font-awesome.css': 'lib/font-awesome/less/font-awesome.less'
+                    'dist/assets/css/main.css': 'design/less/main.less',
+                    'dist/assets/css/bootstrap.css': 'bower_modules/bootstrap/less/bootstrap.less',
+                    'dist/assets/css/font-awesome.css': 'bower_modules/font-awesome/less/font-awesome.less'
                 }
             }
         },
@@ -75,34 +75,20 @@ module.exports = function (grunt) {
                         expand: true,
                         flatten: true,
                         filter: 'isFile',
-                        src: [ 'lib/font-awesome/fonts/**' ],
+                        src: [ 'bower_modules/font-awesome/fonts/**' ],
                         dest: 'dist/assets/fonts'
                     },
                     {
                         expand: true,
                         flatten: true,
                         filter: 'isFile',
-                        src: [ 'lib/marked/lib/**' ],
+                        src: [ 'bower_modules/marked/lib/**' ],
                         dest: 'dist/assets/js'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        filter: 'isFile',
-                        src: [ 'views/**' ],
-                        dest: 'dist'
                     }
                 ]
             },
-            dynamic: {
+            templates: {
                 files: [
-                    {
-                        expand: true,
-                        flatten: true,
-                        filter: 'isFile',
-                        src: [ 'design/images/**/*' ],
-                        dest: 'dist/assets/img'
-                    },
                     {
                         expand: true,
                         flatten: true,
@@ -110,13 +96,24 @@ module.exports = function (grunt) {
                         src: [ 'src/**/*.html' ],
                         dest: 'dist/templates'
                     },
-                    {
+                    {   // Overrides default src HTML with custom files
                         expand: true,
                         flatten: true,
                         filter: 'isFile',
                         src: [ 'design/html/**/*.html' ],
                         dest: 'dist/templates'
-                    } // Override any default src HTML with custom files
+                    }
+                ]
+            },
+            images: {
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        filter: 'isFile',
+                        src: [ 'design/images/**/*' ],
+                        dest: 'dist/assets/img'
+                    }
                 ]
             }
         },
@@ -153,23 +150,34 @@ module.exports = function (grunt) {
                     reload: true
                 }
             },
+            tests: {
+                files: [ 'test/**/*.spec.js' ],
+                tasks: [ 'jshint', 'karma:continuous' ]
+            },
+            script: {
+                files: [ 'src/**/*.js' ],
+                tasks: [ 'jshint', 'karma:continuous', 'concat:app' ],
+                options: {
+                    livereload: true
+                }
+            },
+            templates: {
+                files: [ 'src/**/*.html', 'design/html/**/*' ],
+                tasks: [ 'copy:templates' ],
+                options: {
+                    livereload: true
+                }
+            },
             css: {
-                files: 'less/**/*.less',
+                files: 'design/less/**/*.less',
                 tasks: [ 'less:dev' ],
                 options: {
                     livereload: true
                 }
             },
-            script: {
-                files: [ 'src/**/*.js' ],
-                tasks: [ 'jshint', 'concat:app' ],
-                options: {
-                    livereload: true
-                }
-            },
-            design: {
-                files: [ 'design/images/**/*', 'src/**/*.html', 'design/html/**/*' ],
-                tasks: [ 'copy:dynamic' ],
+            images: {
+                files: [ 'design/images/**/*' ],
+                tasks: [ 'copy:images' ],
                 options: {
                     livereload: true
                 }

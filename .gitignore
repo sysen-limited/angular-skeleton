@@ -4,8 +4,7 @@
 
 // NPM and Bower Dependencies
 .bower
-lib
-bower_components
+bower_modules
 node_modules
 
 // Generated Files
