@@ -6,6 +6,6 @@ angular.module('package.contact', [
     .config(['$routeProvider', function ($routes) {
         $routes
             .when('/contact', {
-                controller: "ContactCtrl", controllerAs: "contact", templateUrl: 'templates/contact.html'
+                controller: "ContactCtrl", controllerAs: "contact", templateUrl: 'templates/contact/contact.html'
             });
     }]);

@@ -1,20 +1,36 @@
 <h1>Contact Us</h1>
 
 <form name="contact.form" role="form">
-    <div class="form-group" data-ng-class="{ true: 'has-success', false: 'has-error' }[ contact.form.name.$valid ]">
+    <div class="form-group" data-ng-class="{ true: 'has-error' }[ contact.form.name.$invalid && contact.form.name.$dirty ]">
         <label class="control-label">Your Name</label>
-        <input class="form-control" name="name" type="text" data-ng-model="contact.name" data-ng-required="true" />
+        <input class="form-control"
+               name="name"
+               type="text"
+               data-ng-model="contact.name"
+               data-ng-required="true" />
     </div>
-    <div class="form-group" data-ng-class="{ true: 'has-success', false: 'has-error' }[ contact.form.email.$valid ]">
+    <div class="form-group" data-ng-class="{ true: 'has-error' }[ contact.form.email.$invalid && contact.form.email.$dirty ]">
         <label class="control-label">Your Email</label>
-        <input class="form-control" name="email" type="email" data-ng-model="contact.email" data-ng-required="true" />
+        <input class="form-control"
+               name="email"
+               type="email"
+               data-ng-model="contact.email"
+               data-ng-required="true" />
     </div>
-    <div class="form-group" data-ng-class="{ true: 'has-success', false: 'has-error' }[ contact.form.message.$valid ]">
+    <div class="form-group" data-ng-class="{ true: 'has-error' }[ contact.form.message.$invalid && contact.form.message.$dirty ]">
         <label class="control-label">Message</label>
-        <textarea class="form-control" name="message" rows="6" data-ng-model="contact.message" data-ng-required="true"></textarea>
+        <textarea class="form-control"
+                  name="message"
+                  rows="6"
+                  data-ng-model="contact.message"
+                  data-ng-required="true"></textarea>
     </div>
     <div class="row">
-        <div class="col-xs-4"><button class="btn btn-warning btn-block" data-ng-click="contact.clear()" data-ng-disabled="contact.form.$pristine">Clear</button></div>
-        <div class="col-xs-8"><button class="btn btn-primary btn-block" data-ng-click="contact.send()" data-ng-disabled="contact.form.$invalid">Send</button></div>
+        <div class="col-xs-4">
+            <button class="btn btn-warning btn-block" data-ng-click="contact.clear()" data-ng-disabled="contact.form.$pristine">Clear</button>
+        </div>
+        <div class="col-xs-8">
+            <button class="btn btn-primary btn-block" data-ng-click="contact.send()" data-ng-disabled="contact.form.$invalid">Send</button>
+        </div>
     </div>
 </form>

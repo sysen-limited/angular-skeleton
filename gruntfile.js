@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                 options: {
                     banner: '<%= meta.modules %>\n'
                 },
-                src: ['src/app.js', 'src/**/*.app.js', 'src/directives/**/*.js', 'src/services/**/*.js', 'src/packages/**/*.ctrl.js'],
+                src: ['src/app.js', 'src/packages/**/*.app.js', 'src/directives/**/*.js', 'src/services/**/*.js', 'src/packages/**/*.ctrl.js'],
                 dest: 'dist/assets/js/app.js'
             },
             angular: {
@@ -30,8 +30,10 @@ module.exports = function (grunt) {
                     'bower_modules/angular/angular.js',
                     'bower_modules/angular-route/angular-route.js',
                     'bower_modules/angular-resource/angular-resource.js',
+                    'bower_modules/angular-cookies/angular-cookies.js',
                     'bower_modules/angular-sanitize/angular-sanitize.js',
                     'bower_modules/angular-touch/angular-touch.js',
+                    'bower_modules/angular-toolbelt/dist/angular-toolbelt.js',
                     'bower_modules/angular-bootstrap/ui-bootstrap-tpls.js'
                 ],
                 dest: 'dist/assets/js/angular.js'
@@ -91,16 +93,16 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        flatten: true,
                         filter: 'isFile',
-                        src: [ 'src/**/*.html' ],
+                        cwd: 'src/packages',
+                        src: [ '**/*.html' ],
                         dest: 'dist/templates'
                     },
                     {   // Overrides default src HTML with custom files
                         expand: true,
-                        flatten: true,
                         filter: 'isFile',
-                        src: [ 'design/html/**/*.html' ],
+                        cwd: 'design/html',
+                        src: [ '**/*.html' ],
                         dest: 'dist/templates'
                     }
                 ]
@@ -109,9 +111,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        flatten: true,
                         filter: 'isFile',
-                        src: [ 'design/images/**/*' ],
+                        cwd: 'design/images',
+                        src: [ '**/*' ],
                         dest: 'dist/assets/img'
                     }
                 ]

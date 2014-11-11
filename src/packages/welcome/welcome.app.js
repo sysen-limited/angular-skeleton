@@ -6,6 +6,6 @@ angular.module('package.welcome', [
     .config(['$routeProvider', function ($routes) {
         $routes
             .when('/', {
-                controller: 'WelcomeCtrl', controllerAs: 'welcome', templateUrl: 'templates/welcome.html'
+                controller: 'WelcomeCtrl', controllerAs: 'welcome', templateUrl: 'templates/welcome/welcome.html'
             });
     }]);
